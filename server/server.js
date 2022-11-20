@@ -16,7 +16,10 @@ connection.once('open', () => {
 });
 
 const renterRouter = require('./routes/renter');
+const balanceRouter = require('./routes/balance');
+
 app.use('/renter', renterRouter);
+app.use('/balance', balanceRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
