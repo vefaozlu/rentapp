@@ -12,7 +12,7 @@ router.route('/:id').get((req, res) => {
 router.route('/post').post((req, res) => {
     const balance = Number(req.body.balance);
     const payPeriod = Number(req.body.payPeriod);
-    const currentPeriodEndDate = Date.parse(req.body.date);
+    const currentPeriodEndDate = Date.parse(req.body.currentPeriodEndDate);
     const rentAmount = Number(req.body.rentAmount);
 
     const newBalance = new Balance({
