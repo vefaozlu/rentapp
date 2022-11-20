@@ -30,7 +30,7 @@ router.route('/post').post((req, res) => {
 router.route('/update/:id').put((req, res) => {
     Balance.findByIdAndUpdate(req.params.id)
         .then(balance => {
-            balance.balance = Number(req.body.params);
+            balance.balance = Number(req.body.balance);
             balance.payPeriod = Number(req.body.payPeriod);
             balance.currentPeriodEndDate = Date(req.body.currentPeriodEndDate);
             balance.rentAmount = Number(req.body.rentAmount);
