@@ -4,7 +4,7 @@ const router = require('express').Router();
 let Balance = require('../models/balance.model');
 
 router.route('/:id').get((req, res) => {
-    Balance.findBiId(req.params.id)
+    Balance.findById(req.params.id)
         .then(balance => res.status(200).json(balance))
         .catch(err => res.status(400).json('Error' + err));
 });
