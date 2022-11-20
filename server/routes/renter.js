@@ -1,7 +1,5 @@
 const Pool = require('pg').Pool;
-require('dotenv').config();
 const router = require('express').Router();
-let Balance = require('../models/balance.model');
 
 const pool = new Pool({
     user: 'me',
@@ -30,7 +28,7 @@ router.route('/:id').get(async (req, res) => {
             [id]
         );
 
-        console.log(results.fields[renter_name]);
+        console.log(results.rows[0].toMap((element) => element.renter_name));
 
         res.status(200).json(results.rows);
     } catch (err) {
