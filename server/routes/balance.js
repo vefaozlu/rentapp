@@ -37,8 +37,7 @@ router.route("/post").post((req, res) => {
     rentAmount,
   });
 
-  newBalance
-    .save()
+  newBalance.save()
     .then(() => res.status(200).json("Balance created"))
     .catch((err) => res.status(400).json("Error" + err));
 });
