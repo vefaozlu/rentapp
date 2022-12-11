@@ -34,14 +34,14 @@ router.route('/:id').get(async (req, res) => {
     }
 });
 
-router.route('post').post(async (req, res) => {
+router.route('/post').post(async (req, res) => {
     try {
-        const { name, email, bank_info } = req.params;
+        const { name, email, bank_info } = req.body;
         const result = await pool.query(
             "INSERT INTO renter (name, email, bank_info) VALUES ($1, $2, $3) RETURNING *",
             [name, email, bank_info]
         );
-        res.status(200).send('User created');
+        res.status(200).json(result.rows);
     } catch (err) {
         res.status(400).send('User create failed ' + err);
     }
