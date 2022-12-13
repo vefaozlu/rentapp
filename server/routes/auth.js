@@ -52,7 +52,7 @@ router.route('/login').post(async (req, res) => {
 
     const key = process.env.TOKEN_SECRET;
 
-    if (!(username || email)) {
+    if (!(username || email)) { 
         return res.status(401).json('Enter a username or email');
     }
 
