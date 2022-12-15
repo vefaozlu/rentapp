@@ -17,13 +17,15 @@ connection.once('open', () => {
     console.log('MongoDB database connection established successfully');
 });
 
-const renterRouter = require('./routes/renter');
-const balanceRouter = require('./routes/balance');
 const authRouter = require('./routes/auth');
+const balanceRouter = require('./routes/balance');
+const propertyRouter = require('./routes/property');
+const renterRouter = require('./routes/renter');
 
-app.use('/renter', renterRouter);
-app.use('/balance', balanceRouter);
 app.use('/auth', authRouter);
+app.use('/balance', balanceRouter);
+app.use('/property', propertyRouter);
+app.use('/renter', renterRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
