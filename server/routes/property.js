@@ -91,9 +91,9 @@ router.route("/delete/:id").delete(async (req, res) => {
     const { id } = req.params;
     const result = await pool.query("DELETE FROM property WHERE id = $1", [id]);
 
-    res.status(200), send("Property deleted");
+    res.status(200).send("Property deleted");
   } catch (err) {
-    res.status(400).send("Delete failed" + err);
+    res.status(400).send("Delete failed " + err);
   }
 });
 
