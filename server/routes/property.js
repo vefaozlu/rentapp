@@ -67,8 +67,17 @@ router.route("/update/:id").put(async (req, res) => {
     } = req.body;
 
     const result = await pool.query(
-      "UPDATE property SET name = $1, address = $2, rent_amount = $3, pay_period = $4, deposit = $5, landlord_id = $6, renter_id = $7",
-      [name, address, rent_amount, pay_period, deposit, landlord_id, renter_id]
+      "UPDATE property SET name = $1, address = $2, rent_amount = $3, pay_period = $4, deposit = $5, landlord_id = $6, renter_id = $7 WHERE id = $8",
+      [
+        name,
+        address,
+        rent_amount,
+        pay_period,
+        deposit,
+        landlord_id,
+        renter_id,
+        id,
+      ]
     );
 
     res.status(200).send("Property updated");
@@ -77,17 +86,14 @@ router.route("/update/:id").put(async (req, res) => {
   }
 });
 
-router.route('/delete/:id').delete(async (req, res) => {
+router.route("/delete/:id").delete(async (req, res) => {
   try {
-    const {id} = req.params;
-    const result = await pool.query(
-      "DLETE FROM property WHERE id = $1",
-      [id]
-    );
+    const { id } = req.params;
+    const result = await pool.query("DELETE FROM property WHERE id = $1", [id]);
 
-    res.status(200),send('Property deleted');
-  } catch(err) {
-    res.status(400).send('Delete failed' + err);
+    res.status(200), send("Property deleted");
+  } catch (err) {
+    res.status(400).send("Delete failed" + err);
   }
 });
 
